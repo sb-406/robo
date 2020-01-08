@@ -26,7 +26,8 @@ ser = serial.Serial(
 print ("starting")
 time.sleep(1)
 #Positionsnummer = 4
-Positionsnummer = input("Manuell verfahren")
+NumStr= input("Manuell verfahren")
+Positionsnummer = int(NumStr)
 rcvPos = readLine(ser)
 ser.write('1 HereC %d\n' %Positionsnummer)
 time.sleep(0.5)
