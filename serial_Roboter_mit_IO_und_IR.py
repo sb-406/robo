@@ -51,6 +51,7 @@ print ("starting")
 time.sleep(0.5)
 ser.write('1 wherec \n')
 time.sleep(2)
+print("Hier")
 rcvStandort = readLine(ser)
 #print ("received Standort:"), rcvStandort
 time.sleep(0.5)
