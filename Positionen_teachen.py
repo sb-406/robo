@@ -23,17 +23,18 @@ ser = serial.Serial(
         timeout=1
 )
 ###################################################
-print "starting"
+print ("starting")
 time.sleep(1)
 Positionsnummer = 4
+Positionsnummer = input("Manuell verfahren und dann Positionsnummer eingeben die festgelegt werden soll: (Hier reichen für den Anfang 1 bis 4")
 #rcvPos = readLine(ser)
 ser.write('1 HereC %d\n' %Positionsnummer)
 time.sleep(0.5)
 rcvPos = readLine(ser)
-print "received Pos:", rcvPos
+print ("received Pos:", rcvPos)
 ser.write('1 locXyz %d\n' %Positionsnummer)
 time.sleep(0.5)
 rcvaktuell = readLine(ser)
-print "received aktuelle Position%d:"%Positionsnummer, rcvaktuell
+print ("received aktuelle Position%d:"%Positionsnummer, rcvaktuell)
 
 
