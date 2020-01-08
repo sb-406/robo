@@ -26,7 +26,7 @@ ser = serial.Serial(
 print ("starting")
 time.sleep(1)
 #Positionsnummer = 4
-Positionsnummer = input("Manuell verfahren und dann Positionsnummer eingeben die festgelegt werden soll: (Hier reichen für den Anfang 1 bis 4")
+Positionsnummer = input("Manuell verfahren")
 rcvPos = readLine(ser)
 ser.write('1 HereC %d\n' %Positionsnummer)
 time.sleep(0.5)
