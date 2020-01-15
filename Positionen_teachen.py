@@ -9,8 +9,8 @@ def readLine(port):
     while True:
         ch = port.read()
         s += ch
-        if ch == '\r':
-            return s
+        #if ch == '\r':
+        #    return s
         if ch == '\n':
             return s
 
@@ -28,8 +28,8 @@ time.sleep(1)
 #Positionsnummer = 4
 NumStr= input("Manuell verfahren")
 Positionsnummer = int(NumStr)
-rcvPos = readLine(ser)
-ser.write('1 HereC %d\n' %Positionsnummer)
+#rcvPos = readLine(ser)
+ser.write('1 HereC %d\n', Positionsnummer)
 time.sleep(0.5)
 rcvPos = readLine(ser)
 print ("received Pos:", rcvPos)
