@@ -10,9 +10,9 @@ def readLine(port):
     while True:
         ch = port.read()
         s += ch
-        if ch == '\r':
-            return s
-        elif ch == '\n':
+        #if ch == '\r':
+        #    return s
+        if ch == '\n':
             return s
 
 ser = serial.Serial(
@@ -59,13 +59,13 @@ time.sleep(0.5)
 ser.write('1 attach 1\n')
 time.sleep(1)
 rcvattach = readLine(ser)
-print ("received attach:"), rcvattach
+print ("received attach:", rcvattach)
 time.sleep(0.5)
 #print ("sending Profile")
 ser.write('1 Profile 1\n')
 time.sleep(1)
 rcvProfil = readLine(ser)
-print ("received Profil:"), rcvProfil
+print ("received Profil:", rcvProfil)
 time.sleep(0.5)
 
 while True:
@@ -77,12 +77,13 @@ while True:
     ser.write('1 waitForEom\n')
     time.sleep(1)
     rcvEoma = readLine(ser)
-    print ("Eom")
+    print ("Eom", rcvEoma)
     # wait for up to 5 seconds for a rising edge (timeout is in milliseconds)
     print ("Lichtschranke triggern (in 5 Sekunden)")
     channel = GPIO.wait_for_edge(GPIO_PIN_IR_SENSOR_2, GPIO.RISING, timeout=5000)
     if channel is None:
        print('Timeout occurred')
+       break
     else:
        print('Edge detected on channel')
 
@@ -98,7 +99,13 @@ while True:
         ser.write('1 waitForEom\n')
         time.sleep(1)
         rcvEomb = readLine(ser)
-        print ("Eom")
+        print ("Eom", rcvEomb)
+        #Outputs testen
+        ser.write('1 Sig 33 1\n')
+        time.sleep(1)
+        rcvSig33 = readLine(ser)
+        print ("Sig33 On", rcvSig33)
+
     else:
         ser.write('1 Move 4 1\n')
         time.sleep(1)
@@ -107,7 +114,7 @@ while True:
         ser.write('1 waitForEom\n')
         time.sleep(1)
         rcvEomc = readLine(ser)
-        print ("Eom")
+        print ("Eom", rcvEomc)
 
     #print ("received Move:", rcvMove)
     #time.sleep(0.5)
@@ -134,19 +141,25 @@ while True:
           ser.write('1 waitForEom\n')
           time.sleep(1)
           rcvEomd = readLine(ser)
+          print ("Eom", rcvEomd)
+          #Outputs testen
+          ser.write('1 Sig 33 0\n')
+          time.sleep(1)
+          rcvSig33 = readLine(ser)
+          print ("Sig33 Off", rcvSig33)
           
           break
 
 #while True:
 #        ser.write('Write counter: %d \n'%(counter))
-#	#Testen
-#	print('print Write counter: %d \n'%(counter))
+#   #Testen
+#   print('print Write counter: %d \n'%(counter))
 #        time.sleep(1)
 #        counter += 1
 
-#	x=ser.readline()
+#   x=ser.readline()
 #        print('serialread',x)
-	
-#	if(counter==10):
+    
+#   if(counter==10):
 #          break
 
