@@ -1,7 +1,6 @@
 # Bachelorarbeit Simon
-## Ideen für Titel
--Digitalisierung einer manuellen Presse zur Integration in IoT-Anwendungen 
--Digitalisierung und Automatisierung eines manuellen Umformprozesses
+## Titel: Digitalisierung einer manuellen Presse zur Integration in IoT-Anwendungen 
+- andere Idee war: Digitalisierung und Automatisierung eines manuellen Umformprozesses
 ## Aufgaben
 	• Entwurf einer Ablaufsteuerung des Umformprozesses
 		○ Definition der Teilschritte des Umformprozesses
@@ -28,4 +27,4 @@
 		○ Visualisierung des Ablaufdiagramms inkl. Prozesszustand und ggf. Metadaten
 	• Ideen
 		○ Steuerung des Roboters von der Cloud aus oder einfach remote von anderem Rechner
-Live-CAD-Visualisierung des Umformungsprozesses
+		○ Live-CAD-Visualisierung des Umformungsprozesses
