@@ -1,10 +1,58 @@
-# Communication to robot and sending of data
+#!/usr/bin/env python
+## Communication to robot
 
 # Klasse mit Methoden (Aufruf über self.methode())
 class ComRobo():
-    def __init__(self,state = 0):
-        self.state = state
+    'Communication'
+    def __init__(self,state = 0, Command = "1 nop\n"):
+            self.state = state
+            self.Command = Command
 
+    # import time
+    import serial
+
+    ser = serial.Serial(
+            port='/dev/ttyS0', #Replace ttyS0 with ttyAM0 for Pi1,Pi2,Pi0
+            baudrate = 115200,
+            parity=serial.PARITY_NONE,
+            stopbits=serial.STOPBITS_ONE,
+            bytesize=serial.EIGHTBITS,
+            timeout=1
+
+    def readLine(port):
+        s = ""
+        while True:
+            ch = port.read()
+            s += ch
+            #if ch == '\r':
+            #    return s
+            if ch == '\n':
+                return s
+
+    def writeLine(Command):
+        # Teilen
+        for char in Command:
+            ser.write(char)
+            #print(char, '\n')
+        return 0
+
+    def WnR(Command):
+        # Teilen und senden
+        for char in Command:
+            ser.write(char)
+            #print(char, '\n')
+        ser.write("\n")
+        # Empfangen
+        s = ""
+        while True:
+            ch = port.read()
+            s += ch
+            #if ch == '\r':
+            #    return s
+            if ch == '\n':
+                return s
+
+"""
     def propagate(self):
         if self.state == 0:
             self.f0()
@@ -24,3 +72,33 @@ class ComRobo():
 
     def f2(self):
         print("f2")
+
+
+
+)
+#####################################################################
+##############Programm mit Roboter IO und IR Sensor##################
+
+counter=0
+print ("starting")
+#time.sleep(1)
+time.sleep(0.5)
+ser.write('1 wherec \n')
+time.sleep(2)
+print("Hier")
+rcvStandort = readLine(ser)
+#print ("received Standort:"), rcvStandort
+time.sleep(0.5)
+#print ("sending attach")
+ser.write('1 attach 1\n')
+time.sleep(1)
+rcvattach = readLine(ser)
+print ("received attach:", rcvattach)
+time.sleep(0.5)
+#print ("sending Profile")
+ser.write('1 Profile 1\n')
+time.sleep(1)
+rcvProfil = readLine(ser)
+print ("received Profil:", rcvProfil)
+time.sleep(0.5)
+"""
