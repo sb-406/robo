@@ -9,16 +9,35 @@ class ComRobo():
             self.Command = Command
 
     # import time
-    import serial
+    
 
-    ser = serial.Serial(
+    
+    def WnR(self):
+        import serial
+        ser = serial.Serial(
             port='/dev/ttyS0', #Replace ttyS0 with ttyAM0 for Pi1,Pi2,Pi0
             baudrate = 115200,
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
             bytesize=serial.EIGHTBITS,
             timeout=1
-
+            )
+        # Teilen und senden
+        for char in self.Command:
+            ser.write(char.encode())
+            #print(char, '\n')
+        #ser.write(encode("\n"))
+        # Empfangen
+        s = ""
+        while True:
+            ch = ser.read().decode()
+            s += ch
+            #if ch == '\r':
+            #    return s
+            if ch == '\n':
+                return s
+   
+"""
     def readLine(port):
         s = ""
         while True:
@@ -35,22 +54,7 @@ class ComRobo():
             ser.write(char)
             #print(char, '\n')
         return 0
-
-    def WnR(Command):
-        # Teilen und senden
-        for char in Command:
-            ser.write(char)
-            #print(char, '\n')
-        ser.write("\n")
-        # Empfangen
-        s = ""
-        while True:
-            ch = port.read()
-            s += ch
-            #if ch == '\r':
-            #    return s
-            if ch == '\n':
-                return s
+"""
 
 """
     def propagate(self):

@@ -53,7 +53,7 @@ ser.write('1 wherec \n')
 time.sleep(2)
 print("Hier")
 rcvStandort = readLine(ser)
-#print ("received Standort:"), rcvStandort
+print ("received Standort:"), rcvStandort
 time.sleep(0.5)
 #print ("sending attach")
 ser.write('1 attach 1\n')

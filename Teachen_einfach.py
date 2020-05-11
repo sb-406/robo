@@ -32,7 +32,7 @@ Positionsnummer = 0
 while Positionsnummer < 8:
     NumStr= input("Manuell verfahren und Positionsnummer eingeben:\n")
     #Positionsnummer = int(NumStr)
-    Positionsnummer = NumStr
+    Positionsnummer = int(NumStr)
     ser.write("1 HereC %d\n" %Positionsnummer)
     print("1 HereC %d\n" %Positionsnummer)
     #time.sleep(0.5)
