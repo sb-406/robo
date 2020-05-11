@@ -1,5 +1,5 @@
-#from modules.states import state_machine, StateMachine
-#from modules.communication import ComRobo
+from modules.states import state_machine, StateMachine
+from modules.communication import WnR, ComRobo
 import time
 import serial
 ser = serial.Serial(
@@ -45,40 +45,6 @@ def WnRx(self):
 #my_decoded_str = my_str_as_bytes.decode()
 #print(type(my_decoded_str)) # ensure it is string representation
         
-###Funktion
-def WnR (Command, arg1, arg2_n):
-    #"Kommunikation mit dem Roboter. Enthält das Senden der Kommandos und Empfangen der Daten"
-    #print ("Starting Up Serial Monitor")
-
-    try:
-        ser.open()
-    except Exception as e:
-        print ("Exception: Opening serial port: " + str(e))
-
-    if ser.isOpen():
-        try:
-            ser.flushInput()
-            ser.flushOutput()
-            #Command= input("Kommando eingeben:")
-            #arg1= input("Argument 1 eingeben:")
-            #arg2_n= input("Argument 2 bis n eingeben:")
-            string = ("1 %s %s %s\n" % (Command, arg1, arg2_n))
-            ser.write(string.encode('ascii'))
-            #print(string)
-            time.sleep(0.5)
-            numberOfLine = 0
-            while True:
-                response = ser.readline().decode('ascii')
-                #print("read data: " + response)
-                numberOfLine = numberOfLine + 1
-                if (numberOfLine >= 1):
-                    break
-            ser.close()
-        except Exception as e:
-            print ("Error communicating...: " + str(e))
-    else:
-        print ("Cannot open serial port.")
-    return response
 
 ###main   
 Command= input("Kommando eingeben:")
