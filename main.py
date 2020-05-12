@@ -1,5 +1,5 @@
 from modules.states import state_machine, StateMachine
-from modules.communication import WnR, ComRobo
+from modules.communication import WnR, txtRnW, ComRobo
 import time
 import serial
 ser = serial.Serial(
@@ -46,7 +46,12 @@ def WnRx(self):
 #print(type(my_decoded_str)) # ensure it is string representation
         
 
-###main   
+###main
+"""
+mode = input("Modus auswählen (Positionen: 1 anzeigen 2 an Roboter geben 3 anfahren und teachen 4 justieren):\n")
+Lemon = txtRnW(mode)
+print(Lemon)
+"""        
 Command= input("Kommando eingeben:")
 arg1= input("Argument 1 eingeben:")
 arg2_n= input("Argument 2 bis n eingeben:")

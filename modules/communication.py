@@ -11,7 +11,7 @@ ser = serial.Serial(
     timeout=1
     )
     
-###Funktion
+###Sende und Empfangsfunktion über die Serielle Schnittstelle
 def WnR (Command, arg1, arg2_n):
     "Kommunikation mit dem Roboter. Enthält das Senden der Kommandos und Empfangen der Daten"
     #print ("Starting Up Serial Monitor")
@@ -19,8 +19,7 @@ def WnR (Command, arg1, arg2_n):
     try:
         ser.open()
     except Exception as e:
-        #print ("Exception: Opening serial port: " + str(e))
-
+        print ("Exception: Opening serial port: " + str(e))
     if ser.isOpen():
         try:
             ser.flushInput()
@@ -46,6 +45,66 @@ def WnR (Command, arg1, arg2_n):
         print ("Cannot open serial port.")
     return response
 
+def txtRnW (mode): # und posData
+    "Auslesen und abspeichern der Positionen in txt Datei"
+    ############# 1 Anzeigen welche Positionen es gibt oder 2 Übertragen der Positionsdaten an den Roboter
+    mode = int(mode)
+    if mode == 1 or mode == 2:
+        infile = open("/home/pi/robo/Ergebnisse.txt", "r")
+        for line in infile:
+            
+            line.rstrip('\n')
+            pre, NrPos = line.split(' 0 0 ')
+            Nr, Pos = NrPos.split(' ', 1)
+            if mode == 1:
+                print('Position', Nr, Pos)
+                #return 0
+            if mode == 2:
+                #Command = "LocXyz"
+                #arg1 = Nr
+                #arg2_n = Pos
+                resp = WnR ("LocXyz", Nr, Pos)
+                print(resp)
+                #return responce
+        infile.close()
+        return "fertig"
+        
+    if mode == 3 or mode == 4:
+        ############Eingabe welche Position verändert werden soll muss später von außen kommen
+        ######## 3 neue Position ist dort wo Roboter steht oder 4 Position wird fein justiert 
+        
+        if mode == 3:
+            newNr = input("Manuell verfahren und Positionsnummer eingeben:\n")
+            oneZero = WnR ("HereC", newNr, "")
+            recivedStr = WnR ("locXyz", newNr, "")
+            #recivedStr = ('1 0 0 %s 40 -444 228 -171 90 -180' %newNr)
+            #print(recivedStr)
+            #Einlesen und teilen
+            pre, NrPos = recivedStr.rstrip('\n').split(' 0 0 ')
+            Nr, recivedPos = NrPos.split(' ', 1)
+            #print(recivedPos)
+        if mode == 4:
+            newNr = input("Positionsnummer eingeben:\n")
+            posData = input("Position als Koordinaten eingeben (z.b. 40 -444 228 -171 90 -180): ")
+            recivedPos = posData
+
+        ############ Eine Position ändern und richtig eintragen
+        #outfile = open(fname[:-4] + ".changed", 'w')
+        infile = open("/home/pi/robo/Ergebnisse.txt", "r")
+        outfile = open ("/home/pi/robo/Ergebnisse.txt", "r+")
+        for line in infile:
+            #Einlesen und teilen
+            pre, NrPos = line.rstrip('\n').split(' 0 0 ')
+            Nr, Pos = NrPos.split(' ', 1)
+            #Aederung
+            if newNr == Nr:
+                Pos = recivedPos.ljust(len(Pos))
+            #Ersetzen
+            outfile.write('1 0 0 %s %s\n' %(Nr, Pos))
+            print(Nr, Pos)
+
+        infile.close()
+        outfile.close()
 
 
 # Klasse mit Methoden (Aufruf über self.methode())

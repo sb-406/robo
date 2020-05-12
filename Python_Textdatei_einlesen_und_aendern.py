@@ -58,14 +58,12 @@ rcvaktuell = 2345
 file.write("Position %s : %s" % (Positionsnummer,rcvaktuell))
 """
 
-import os
-import re
 
-import os
-import re
+#import os
+#import re
 
-############# Anzeigen welche Positionen es gibt
-infile = open("F:/Hauptordner/Simon\Hochschule Aalen/7_Semester_WS19/Versuche Python/Python_Textdatei_einlesen_und_aendern/Ergebnisse.txt", "r")
+############# Anzeigen welche Positionen es gibt oder auch Übertragen der Positionsdaten an den Roboter
+infile = open("/home/pi/robo/Ergebnisse.txt", "r")
 for line in infile:
     
     line.rstrip('\n')
@@ -77,9 +75,10 @@ for line in infile:
     #print(Pos)
 infile.close()
 
-############Eingabe welche Position verändert werden soll
+############Eingabe welche Position verändert werden soll muss später von außen kommen
 newNr = input("Manuell verfahren und Positionsnummer eingeben:\n")
-recivedStr = '1 0 0 %d 40 -444 228 -171 90 -180'
+recivedStr = ('1 0 0 %s 40 -444 228 -171 90 -180' %newNr)
+print(recivedStr)
 #Einlesen und teilen
 pre, NrPos = recivedStr.rstrip('\n').split(' 0 0 ')
 Nr, recivedPos = NrPos.split(' ', 1)
@@ -87,8 +86,8 @@ Nr, recivedPos = NrPos.split(' ', 1)
 
 ############ Eine Position ändern und richtig eintragen
 #outfile = open(fname[:-4] + ".changed", 'w')
-infile = open("F:/Hauptordner/Simon\Hochschule Aalen/7_Semester_WS19/Versuche Python/Python_Textdatei_einlesen_und_aendern/Ergebnisse.txt", "r")
-outfile = open ("F:/Hauptordner/Simon\Hochschule Aalen/7_Semester_WS19/Versuche Python/Python_Textdatei_einlesen_und_aendern/Ergebnisse.txt", "r+")
+infile = open("/home/pi/robo/Ergebnisse.txt", "r")
+outfile = open ("/home/pi/robo/Ergebnisse.txt", "r+")
 for line in infile:
     #Einlesen und teilen
     pre, NrPos = line.rstrip('\n').split(' 0 0 ')
