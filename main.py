@@ -47,16 +47,24 @@ def WnRx(self):
         
 
 ###main
-"""
-mode = input("Modus auswählen (Positionen: 1 anzeigen 2 an Roboter geben 3 anfahren und teachen 4 justieren):\n")
-Lemon = txtRnW(mode)
-print(Lemon)
-"""        
-Command= input("Kommando eingeben:")
-arg1= input("Argument 1 eingeben:")
-arg2_n= input("Argument 2 bis n eingeben:")
-Robosaid= WnR(Command, arg1, arg2_n)
-print("erhalten: "+Robosaid)
+#Startup
+WnR("hp", "1", "10")
+WnR("attach", "1", "")
+WnR("home", "", "")
+Bewegungsprofil = WnR("Profile", "1", "")
+print(Bewegungsprofil)
+txtRnW("2")
+#mode = input("Modus auswählen (Positionen: 1 anzeigen 2 an Roboter geben 3 anfahren und teachen 4 justieren):\n")
+#Lemon = txtRnW(mode)
+#print(Lemon)
+while True:      
+    Command= input("Kommando eingeben:")
+    arg1= input("Argument 1 eingeben:")
+    arg2_n= input("Argument 2 bis n eingeben:")
+    Robosaid= WnR(Command, arg1, arg2_n)
+    print("erhalten: "+Robosaid)
+    if arg1 == "x":
+        break
 
 """
 Positionsnummer = 0
