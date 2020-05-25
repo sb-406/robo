@@ -48,15 +48,16 @@ def WnRx(self):
 
 ###main
 #Startup
+WnR("attach", "1", "")
 WnR("hp", "1", "10")
 WnR("attach", "1", "")
 WnR("home", "", "")
 Bewegungsprofil = WnR("Profile", "1", "")
 print(Bewegungsprofil)
 txtRnW("2")
-#mode = input("Modus auswählen (Positionen: 1 anzeigen 2 an Roboter geben 3 anfahren und teachen 4 justieren):\n")
-#Lemon = txtRnW(mode)
-#print(Lemon)
+mode = input("Modus auswählen (Positionen: 1 anzeigen 2 an Roboter geben 3 anfahren und teachen 4 justieren):\n")
+Lemon = txtRnW(mode)
+print(Lemon)
 while True:      
     Command= input("Kommando eingeben:")
     arg1= input("Argument 1 eingeben:")

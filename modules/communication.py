@@ -50,7 +50,7 @@ def txtRnW (mode): # und posData
     ############# 1 Anzeigen welche Positionen es gibt oder 2 Übertragen der Positionsdaten an den Roboter
     mode = int(mode)
     if mode == 1 or mode == 2:
-        infile = open("/home/pi/robo/Ergebnisse.txt", "r")
+        infile = open("/home/pi/robo/txtfiles/ArchiviertePositionen.txt", "r")
         for line in infile:
             
             line.rstrip('\n')
@@ -86,12 +86,13 @@ def txtRnW (mode): # und posData
         if mode == 4:
             newNr = input("Positionsnummer eingeben:\n")
             posData = input("Position als Koordinaten eingeben (z.b. 40 -444 228 -171 90 -180): ")
+            WnR("locXyz", newNr, posData)#neu direkt an Roboter übertragen
             recivedPos = posData
 
         ############ Eine Position ändern und richtig eintragen
         #outfile = open(fname[:-4] + ".changed", 'w')
-        infile = open("/home/pi/robo/Ergebnisse.txt", "r")
-        outfile = open ("/home/pi/robo/Ergebnisse.txt", "r+")
+        infile = open("/home/pi/robo/txtfiles/ArchiviertePositionen.txt", "r")
+        outfile = open ("/home/pi/robo/txtfiles/ArchiviertePositionen.txt", "r+")
         for line in infile:
             #Einlesen und teilen
             pre, NrPos = line.rstrip('\n').split(' 0 0 ')
