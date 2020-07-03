@@ -1,0 +1,7 @@
+Endschalter_oben=False      
+Endschalter_unten=False     
+IR_Sensor_1=False           
+IR_Sensor_2=False           
+Kontakt_Stapel_1:False      
+Kontakt_Stapel_2:False      
+Temperatur:20.00            

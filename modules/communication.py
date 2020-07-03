@@ -1,5 +1,17 @@
 #!/usr/bin/env python
-## Communication to robot
+#-------------------------------------------------------------------------------
+# Name:        Communication to robot
+# Purpose:
+#
+# Author:      Simon Bohn Bachelorarbeit 
+#
+# Created:     12.04.2020
+# Links:       https://stackoverflow.com/questions/45411924/python3-two-way-serial-communication-reading-in-data 12.05.2020 Grundlage für WnR Funktion
+#
+#
+# Funktionen:  WnR(), txtRnW(), WaitforEom()
+#-------------------------------------------------------------------------------
+
 import time
 import serial
 ser = serial.Serial(
@@ -10,7 +22,7 @@ ser = serial.Serial(
     bytesize=serial.EIGHTBITS,
     timeout=1
     )
-    
+#############################################################################################    
 ###Sende und Empfangsfunktion über die Serielle Schnittstelle
 def WnR (Command, arg1, arg2_n):
     "Kommunikation mit dem Roboter. Enthält das Senden der Kommandos und Empfangen der Daten"
@@ -44,7 +56,7 @@ def WnR (Command, arg1, arg2_n):
     else:
         print ("Cannot open serial port.")
     return response
-
+##########################################################################################################
 def txtRnW (mode): # und posData
     "Auslesen und abspeichern der Positionen in txt Datei"
     ############# 1 Anzeigen welche Positionen es gibt oder 2 Übertragen der Positionsdaten an den Roboter
@@ -60,11 +72,12 @@ def txtRnW (mode): # und posData
                 print('Position', Nr, Pos)
                 #return 0
             if mode == 2:
+                print('Position', Nr, Pos)
                 #Command = "LocXyz"
                 #arg1 = Nr
                 #arg2_n = Pos
                 resp = WnR ("LocXyz", Nr, Pos)
-                print(resp)
+                #print(resp)
                 #return responce
         infile.close()
         return "fertig"
@@ -108,6 +121,66 @@ def txtRnW (mode): # und posData
         outfile.close()
 
 
+########################################################################################
+def WaitforEom():
+        responce = ""
+        while responce!= "1 0\r\n":
+            responce = WnR("waitForEom", "", "")
+            #print (responce)
+        print (responce)
+########################################################################################
+def getTemp():
+    import sys
+
+    # Systempfad zum den Sensor, weitere Systempfade könnten über ein Array
+    # oder weiteren Variablen hier hinzugefügt werden.
+    # 28-02161f5a48ee müsst ihr durch die eures Sensors ersetzen!
+    sensor = '/sys/bus/w1/devices/28-011939d24992/w1_slave'
+
+    def readTempSensor(sensorName) :
+        """Aus dem Systembus lese ich die Temperatur der DS18B20 aus."""
+        f = open(sensorName, 'r')
+        lines = f.readlines()
+        f.close()
+        return lines
+
+    def readTempLines(sensorName) :
+        lines = readTempSensor(sensorName)
+        # Solange nicht die Daten gelesen werden konnten, bin ich hier in einer Endlosschleife
+        # ['54 01 4b 46 7f ff 0c 10 fd : crc=fd YES\n', '54 01 4b 46 7f ff 0c 10 fd t=21250\n']
+        while lines[0].strip()[-3:] != 'YES':
+            time.sleep(0.2)
+            lines = readTempSensor(sensorName)
+        temperaturStr = lines[1].find('t=')
+        # Ich überprüfe ob die Temperatur gefunden wurde.
+        if temperaturStr != -1 :
+            tempData = lines[1][temperaturStr+2:]
+            tempCelsius = float(tempData) / 1000.0
+            tempKelvin = 273 + float(tempData) / 1000
+            tempFahrenheit = float(tempData) / 1000 * 9.0 / 5.0 + 32.0
+            # Rückgabe als Array - [0] tempCelsius => Celsius...
+            return [tempCelsius, tempKelvin, tempFahrenheit]
+
+    try:
+        #while True :
+            # Mit einem Timestamp versehe ich meine Messung und lasse mir diese in der Console ausgeben.
+            #print("Temperatur um " + time.strftime('%H:%M:%S') +" drinnen: " + str(readTempLines(sensor)[0]) + " °C")
+        print("Temperatur:"+ str(readTempLines(sensor)[0]))
+
+            # Nach 10 Sekunden erfolgt die nächste Messung
+            #time.sleep(10)
+    except KeyboardInterrupt:
+        # Programm wird beendet wenn CTRL+C gedrückt wird.
+        print('Temperaturmessung wird beendet')
+    except Exception as e:
+        print(str(e))
+        sys.exit(1)
+    #finally:
+        # Das Programm wird hier beendet, sodass kein Fehler in die Console geschrieben wird.
+        #print('Programm wird beendet.')
+        #sys.exit(0)
+########################################################################################
+"""
 # Klasse mit Methoden (Aufruf über self.methode())
 class ComRobo():
     'Communication'
@@ -144,7 +217,7 @@ class ComRobo():
             if ch == '\n':
                 return s
    
-"""
+
     def readLine(port):
         s = ""
         while True:
@@ -161,9 +234,9 @@ class ComRobo():
             ser.write(char)
             #print(char, '\n')
         return 0
-"""
 
-"""
+
+
     def propagate(self):
         if self.state == 0:
             self.f0()
@@ -183,13 +256,11 @@ class ComRobo():
 
     def f2(self):
         print("f2")
-
-
-
 )
+"""
 #####################################################################
 ##############Programm mit Roboter IO und IR Sensor##################
-
+"""
 counter=0
 print ("starting")
 #time.sleep(1)
