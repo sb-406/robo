@@ -14,7 +14,7 @@
 from modules.states import state_machine, StateMachine
 from modules.communication import WnR, txtRnW, WaitforEom, getTemp #,ComRobo
 from modules.gpio_in_and_out import GPIOwaitforEdge, GPIOifHigh, GPIOsetOutput
-from modules.thingworx_upload import _send_raw_http_request, _send_step
+from modules.thingworx_upload import _send_raw_http_request, _send_step, _send_temp
 
 #import time#
 import sys
@@ -144,7 +144,7 @@ def f0():
 def f1():
     print("f1 Platinenstapel anfahren")
     _send_step("f1")
-    ok = GPIOifHigh(25)#Checked ob eine Platine auf Stapel 1
+    #ok = GPIOifHigh(25)#Checked ob eine Platine auf Stapel 1
     if GPIOifHigh(25) != True: #Checked ob eine Platine auf Stapel 1
         GPIOwaitforEdge(25, "Stapel 1 Platine eingelegt?")
     if GPIOifHigh(26) == True:#Checked ob Stapel 2 frei ist
@@ -255,7 +255,7 @@ def f15():
 def f16():
     print("f16 In Presse fahren")
     _send_step("f16")
-    if GPIOifHigh != True:
+    if GPIOifHigh(20) != True:
         GPIOwaitforEdge(20, "Endschalter_oben drücken")
     WnR("Move", "16", "1")
     WaitforEom()
@@ -279,8 +279,8 @@ def f19():
     WnR("Move", "19", "1")
     GPIOwaitforEdge(18, "Lichtschranke an Messstelle")
     WaitforEom()
-    getTemp()
-
+    _send_temp(getTemp())
+    
 def f20():
     print("f20 Zum Ablegestapel fahren")
     _send_step("f20")

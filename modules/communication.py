@@ -93,7 +93,7 @@ def txtRnW (mode): # und posData
             #recivedStr = ('1 0 0 %s 40 -444 228 -171 90 -180' %newNr)
             #print(recivedStr)
             #Einlesen und teilen
-            pre, NrPos = recivedStr.rstrip('\n').split(' 0 0 ')
+            pre, NrPos = recivedStr.rstrip('\r\n').split(' 0 0 ')
             Nr, recivedPos = NrPos.split(' ', 1)
             #print(recivedPos)
         if mode == 4:
@@ -165,7 +165,8 @@ def getTemp():
         #while True :
             # Mit einem Timestamp versehe ich meine Messung und lasse mir diese in der Console ausgeben.
             #print("Temperatur um " + time.strftime('%H:%M:%S') +" drinnen: " + str(readTempLines(sensor)[0]) + " °C")
-        print("Temperatur:"+ str(readTempLines(sensor)[0]))
+        #print("Temperatur:"+ str(readTempLines(sensor)[0]))
+        return float(readTempLines(sensor)[0])
 
             # Nach 10 Sekunden erfolgt die nächste Messung
             #time.sleep(10)
@@ -179,6 +180,10 @@ def getTemp():
         # Das Programm wird hier beendet, sodass kein Fehler in die Console geschrieben wird.
         #print('Programm wird beendet.')
         #sys.exit(0)
+########################################################################################
+##testing
+#print(getTemp())
+
 ########################################################################################
 """
 # Klasse mit Methoden (Aufruf über self.methode())

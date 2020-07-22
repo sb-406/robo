@@ -9,13 +9,14 @@
 # Links:       
 # Funktionen:  
 #-------------------------------------------------------------------------------
-from modules.communication import WnR, txtRnW, WaitforEom, getTemp #,ComRobo
+from modules.communication import WnR, txtRnW
 
 import sys
 
 try:
     while True :
-        mode = input("Modus auswählen (Positionen: 1 anzeigen 2 an Roboter geben 3 anfahren und teachen 4 justieren):\n")
+        #mode = input("Modus auswählen (Positionen: 1 anzeigen 2 an Roboter geben 3 anfahren und teachen 4 justieren):\n")
+        mode = 3
         Lemon = txtRnW(mode)
         print(Lemon)      
         
