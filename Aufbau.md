@@ -4,12 +4,11 @@
 - Grundlagen
 - Stand der Technik
 - Systementwurf
-  - 
 - Digitalisierung des Umformprozesses
   - Entwurf einer Ablaufsteuerung des Umformprozesses
-    - Definition der Teilschritte des Umformprozesses
-    - Analyse der Sicherheitsanforderungen
-    - Konzeption eines Ablaufdiagramms unter Berücksichtigung der Sicherheits- und  Bearbeitungsvorgaben
+	- Definition der Teilschritte des Umformprozesses
+    	- Analyse der Sicherheitsanforderungen
+   	- Konzeption eines Ablaufdiagramms unter Berücksichtigung der Sicherheits- und  Bearbeitungsvorgaben
 	- Implementierung der Schnittstelle zu Roboter
 		- Recherche der seriellen Kommunikationsschnittstelle des Roboters
 		- Implementierung der Schnittstelle auf dem Raspberry zur Kommunikation mit dem Roboter
