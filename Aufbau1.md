@@ -7,7 +7,7 @@
 - Digitalisierung des Umformprozesses
 	- Entwurf einer Ablaufsteuerung des Umformprozesses
 		- Definition der Teilschritte des Umformprozesses
-    		- Analyse der Sicherheitsanforderungen
+		- Analyse der Sicherheitsanforderungen
    		- Konzeption eines Ablaufdiagramms unter Berücksichtigung der Sicherheits- und  Bearbeitungsvorgaben
 	- Implementierung der Schnittstelle zu Roboter
 		- Recherche der seriellen Kommunikationsschnittstelle des Roboters
