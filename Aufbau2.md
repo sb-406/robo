@@ -29,6 +29,7 @@
 	- Entwicklung und Implementierung der Prozessübersicht auf ThingWorX
 		- Darstellung der Sensordaten
 		- Visualisierung des Ablaufdiagramms inkl. Prozesszustand und ggf. Metadaten
+- Zusammenfassung und Ausblick
 	- Ideen
 		- Steuerung des Roboters von der Cloud aus oder einfach remote von anderem Rechner
-- Zusammenfassung und Ausblick
+
