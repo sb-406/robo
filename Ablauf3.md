@@ -1,6 +1,13 @@
 ## Aufbau der Arbeit
 
 - Einleitung
+	- Entwicklung hin zu Industrie 4.0 + IoT
+	- Intelligente Maschinen + vernetzte Maschinen
+		- Erlaubt vollautomatisierung von Produktionsanlagen / Predictive Maintenance			
+	- Auch HS Aalen mit SimKI 
+		- kostengünstige Aufrüstung von manuellen Maschinen (in mittelständischen Unternehmen) mit Sensorik und Aktorik zur Integration in IoT-Anwendungen und Automatisierung
+		- Erlaubt später Integration von Predictive Maintenance Verfahren basierend auf Maschinendaten
+		- weitere Infos ...
 - Grundlagen
 - Stand der Technik
 - (Systementwurf)
