@@ -7,17 +7,24 @@
 	- Auch HS Aalen mit SimKI 
 		- kostengünstige Aufrüstung von manuellen Maschinen (in mittelständischen Unternehmen) mit Sensorik und Aktorik zur Integration in IoT-Anwendungen und Automatisierung
 		- Erlaubt später Integration von Predictive Maintenance Verfahren basierend auf Maschinendaten
+		- Von neuartigen Entwicklungen profitieren, ohne in neue Maschinen invesieren zu müssen (wäre für viele Firmen ein wirtschaftlicher Ruin)
 		- weitere Infos ...
 - Grundlagen
-- Stand der Technik
-- (Systementwurf)
+	- Serielle Kommunikation
+	- Zustandsmaschine
+	- Roboterarm
+	- Raspberry Pi
+	- Rest API
+	- ThingworX
+- Stand der Technik / Verwandte Konzepte
+	- Steuerung Roboter
+	- Aufrüstung manueller Maschinen zur Integration in Prozessautomatisierung und IoT
 - Digitalisierung des Umformprozesses
 	- Entwurf einer Ablaufsteuerung des Umformprozesses
 		- Definition der Teilschritte des Umformprozesses
 		- Analyse der Sicherheitsanforderungen
    		- Konzeption eines Ablaufdiagramms unter Berücksichtigung der Sicherheits- und  Bearbeitungsvorgaben
-	- Implementierung der Schnittstelle zu Roboter
-		- (Recherche der seriellen Kommunikationsschnittstelle des Roboters)
+	- Implementierung der Schnittstelle zu Roboter	 
 		- Implementierung der Schnittstelle auf dem Raspberry zur Kommunikation mit dem Roboter
 		- Definition der möglichen Kommandos 
 	- Nachrüstung der Sensorik und Aktorik
