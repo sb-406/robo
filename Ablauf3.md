@@ -17,7 +17,7 @@
 		- Anforderungsanalyse und Auswahl geeigneter Sensoren
 		- Anbringung der Sensoren
 		- Auslesen der Sensoren mit Raspi
-    		- Aktorik zur Steuerung der Presse
+		- Aktorik zur Steuerung der Presse
 	- Automatisierung des Roboters
 		- Implementierung der Ablaufsteuerung basierend auf dem Ablaufdiagramm und der Sensorik
 		- Teachen der Wegpunkte und Aktionen
