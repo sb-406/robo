@@ -110,7 +110,7 @@ def state_machine(state):
         state = 19
     elif state == 19: 
         f19()
-        state = 1
+        state = 20
     elif state == 20: 
         f20()
         state = 21
@@ -122,7 +122,7 @@ def state_machine(state):
         state = 23
     elif state == 23: 
         f23()
-        state = 24
+        state = 1
         
         
     elif state == 999:
@@ -191,13 +191,13 @@ def f6():
 def f7():
     print("f7 Greifer anheben")
     _send_step("f7")
-    WnR("Move", "7", "1")
+    WnR("Move", "5", "1")
     WaitforEom()
     
 def f8():
     print("f8 Aus Presse fahren")
     _send_step("f8")
-    WnR("Move", "8", "1")
+    WnR("Move", "4", "1")
     GPIOwaitforEdge(17, "Lichtschranke vor Presse")
     WaitforEom()
     GPIOsetOutput(12, 21, "Presse fährt runter")
@@ -208,7 +208,7 @@ def f9():
     _send_step("f9")
     if GPIOifHigh(20) != True:
         GPIOwaitforEdge(20, "Endschalter_oben drücken")
-    WnR("Move", "9", "1")
+    WnR("Move", "5", "1")
     WaitforEom()
     
 def f10():
@@ -221,7 +221,7 @@ def f10():
 def f11():
     print("f11 Greifer anheben")
     _send_step("f11")
-    WnR("Move", "11", "1")
+    WnR("Move", "5", "1")
     WaitforEom()
     
 def f12():
@@ -246,7 +246,7 @@ def f14():
 def f15():
     print("f15 Aus Presse fahren")
     _send_step("f15")
-    WnR("Move", "15", "1")
+    WnR("Move", "4", "1")
     GPIOwaitforEdge(17, "Lichtschranke vor Presse")
     WaitforEom()
     GPIOsetOutput(12, 21, "Presse fährt runter")
@@ -270,7 +270,7 @@ def f17():
 def f18():
     print("f18 Aus Presse fahren")
     _send_step("f18")
-    WnR("Move", "18", "1")
+    WnR("Move", "4", "1")
     WaitforEom()
     
 def f19():
@@ -284,26 +284,26 @@ def f19():
 def f20():
     print("f20 Zum Ablegestapel fahren")
     _send_step("f20")
-    WnR("Move", "20", "1")
+    WnR("Move", "7", "1")
     WaitforEom() 
 
 def f21():
     print("f21 Greifer absetzen/ ablegen")
     _send_step("f21")
-    WnR("Move", "21", "1")
+    WnR("Move", "8", "1")
     WaitforEom()
     WnR("Sig", "33", "0")
 
 def f22():
     print("f22 Greifer anheben")
     _send_step("f22")
-    WnR("Move", "22", "1")
+    WnR("Move", "15", "1")
     WaitforEom()
 
 def f23():
     print("f23 Fahren in Ausgangsposition")
     _send_step("f23")
-    WnR("Move", "23", "1")
+    WnR("Move", "18", "1")
     WaitforEom()
 #    
 #
